@@ -1,0 +1,34 @@
+Consider the stage-1 `planning' problem, considered as a linear program. The notation below is the same as before. Additionally, we define the duals associated with each constraint:
+
+\begin{longtable}[h]{lll}
+{\it Objective Function} &&\\
+minimize$\displaystyle\ \sum_{i} \zeta_i x_i$ + $\displaystyle\sum_{i} \displaystyle\sum_{lt} \Gamma^f_l F_{ilt} x_i$ $\displaystyle +~\sum_{s=0}^S p_s Q_s$& & \\
+\ \ where: $\displaystyle Q_s := \sum_{e_s=1}^{N_s}\left(\sum_{i} \zeta_{i}^{e_s} x^{e_s *}_{i}~+~\sum_{i} \sum_{lt} \Gamma^f_l F_{ilt} x^{e_s *}_{i} + 
+\sum_{f} P_f \mu_f^* + \sum_{i} cost_{fi} z_{fi}^{e_s *}\right)$, defined for scenarios $s$& &\\
+\ \ which occur with probabilities $p_s$ and have $N_s$ events $e_s$.& &\\
+%& & \\
+\end{longtable}
+\begin{longtable}[h]{ll|l|l}
+%& & \\
+{\it Constraint} && {\it Dual} &\\
+{\it Aircraft Constraints} &&&\\
+$\displaystyle\sum_{i=1}^{I} \phi_{ijlt}x_i - \displaystyle\sum_{i=1}^{I} \psi_{ijl(t-R_{j}')}x_i + a_{jlt} - a_{jl(t-1)}$ & $= N_{jlt}$ &$\pi^A_{jlt}$ & $\forall j,l,t$\\
+& & &\\
+{\it Crew Constraints} &&& \\
+$\displaystyle\sum_{i=1}^{I} \eta_{iklt}x_i - \displaystyle\sum_{i=1}^{I} \gamma_{ijl(t-R_k)}x_i + c_{klt} - c_{kl(t-1)}$ & $= C_{klt}$ &$\pi^C_{klt}$& $\forall k,l,t$ \\ 
+& & &\\
+{\it Fuel Constraints} &&& \\
+$\displaystyle\sum_{i=1}^{I} F_{ilt}x_i + f_{lt} -f_{l(t-1)} $ & $ = G_{lt}$ &$\pi^F_{lt}$ & $\forall l,t$\\
+%$\displaystyle\sum_{i=1}^{I} F_{ilt}x_i + f_{lt} -f_{l(t-1)} + \sum_{i, h \in rhop(i)} F_{ih}'rdep(l,i,h,t)v_{ihl}$ & $ = G_{lt}$ &$\pi^F_{lt}$ & $\forall l,t$\\
+& & &\\
+{\it Maximum on Ground} &&& \\
+$\displaystyle\sum_{i=1}^{I}gs(i)\theta_{ilt}x_i - \displaystyle\sum_{i=1}^{I}gs(i)\omega_{ilt}x_i + m_{lt} - m_{l(t-1)}$ & $=M_{lt}$ &$\pi^M_{lt}$ & $\forall l,t$ %\\ 
+
+%$\displaystyle\sum_{i,j}gs(i)J^{L}_{j}J_{ij}\theta_{ilt}x_i - \displaystyle\sum_{i,j}gs(i)J^{L}_{j}J_{ij}\omega_{ilt}x_i + m'_{lt} - m'_{l(t-1)}$ & $=M^L_{lt}$ &$\pi^{M,{\cal SB}}_{jlt}$ & $\forall l \in {\cal SB},t$ \\ 
+%{\it Refueling constraints} &&& \\
+%$\displaystyle\sum_{l \in rloc(i,h)} v_{ihl} - \nu_{ih}x_i $ & $ =0 $ &$\pi^R_{ih}$ & $\forall i, h \in rhop(i)$ \\ 
+%$\displaystyle\sum_{i,h \in rhop(i)} rdep(l,i,h,t)v_{ihl} - \displaystyle\sum_{i,h \in rhop(i)} rarr(l,i,h,t)v_{ihl} + t_{lt} - t_{l(t-1)}$ & $ =N_{jlt} $ &$\pi^T_{jlt}$ & $\forall l,t, j = $ tanker-type\\ 
+%& & \\
+%{\it Alternative for Refueling constraints} && \\
+%$\displaystyle\sum_{i=1}^{I} \tau_{ilt}x_i - \displaystyle\sum_{i=1}^{I} \rho_{ilt}x_i + t_{lt} - t_{l(t-1)}$ & $= N_{jlt}$ & $\forall l,t, j = $tanker-type\\
+\end{longtable}

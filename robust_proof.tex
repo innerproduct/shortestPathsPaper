@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\newtheorem{thm}{Theorem}
+\begin{document}
+%\long\def\/*#1*/{} %include multiline comments using \/* and */
+
+%algorithm for the robust deviation shortest path
+
+Consider a (connected) directed acyclic graph $G$ with the vertex set $V = \{1, \dots, n\}$ and the edge set $E \subseteq V \times V$. We assume that the vertices are presented in a valid topological order. We also assume that there are a total of $m$ edges and $s$ scenarios (each scenario consists of a an assignment of weights or costs to edges). Our goal is to find a path from $1$ to $n$ that minimizes the maximum deviation in cost across all scenarios.\cite{some_refs}
+
+We now describe our algorithm:
+\begin{description}
+\item[Step 0:] For each scenario we construct a singe-source shortest path tree on the graph. This has a complexity of $\mathcal{O}(s m)$. At the end of this step we have an $(s+3)-$tuple as a label at each vertex consisting of its distances from the origin (vertex $1$) in each scenario, with two further labels, say, $-1$ and $+\infty$ added on to indicate the predecessor in the robust shortest path, and distance from the origin along the robust shortest path. At a vertex $i$ we denote its label as $(d_i^1,\dots,d_i^s,P_i,d_i^{\textrm{robust}},s^{*})$, where $s_i^{*}$ is the scenario for which the deviation is the greatest.
+
+\item[Step 1:] For the source vertex define the robust path and calculate the cost of the robust path in each scenario\footnote{Using either the ARSP or MDSP definition. This distinction doesn't matter for the source vertex since all costs are zero.}.
+
+\item[Step 2:] Process the remaining vertices in a valid topological order. For each vertex $v$, we determine a `robust path'\footnote{Or $k$-shortest paths} to it from the source as follows:
+\begin{enumerate}
+\item Let $\{e^v_1,\dots,e^v_l\}$ be all the incoming edges for the vertex $v$. Let us denote the corresponding predecessor vertices $\{u_1,\dots,u_l\}$ (we drop the dependence on $v$ from the notation). For each predecessor vertex $u_i$ we compute the following $S$ quantities, where $S$ is the number of scenarios: \begin{comment}$c^{\textrm{sp},s}_i + c^s_{u_iv}$ and\end{comment} $c^{\textrm{rp},s}_i + c^s_{u_iv}$. In the previous expression the superscript $\textrm{rp}$ indicates that the cost is for the `robust' path. The superscript $s$ indicates the scenario.
+\item 
+
+\end{enumerate}
+\end{description}
+\begin{comment}
+\begin{description}
+	\item[Step 0:] For each scenario we construct a singe-source shortest path tree on the graph. This has a complexity of $\mathcal{O}(s m)$. At the end of this step we have an $(s+3)-$tuple as a label at each vertex consisting of its distances from the origin (vertex $1$) in each scenario, with two further labels, say, $-1$ and $+\infty$ added on to indicate the predecessor in the robust shortest path, and distance from the origin along the robust shortest path. At a vertex $i$ we denote its label as $(d_i^1,\dots,d_i^s,P_i,d_i^{\textrm{robust}},s^{*})$, where $s_i^{*}$ is the scenario for which the deviation is the greatest.
+	\item[Step 1:] We next go through the vertices in a topological order and, for each vertex $j$, we look at all its incoming edges $(i,j)$\footnote{It isn't necessary for the correctness of our algorithm but we go through the list of predecessors in the topological order as well.} and we update the last two entries of $j$'s label as follows:
+		\begin{description}
+			\item[Update $j$:] Let $d_{ij}^s$ be the weight on the edge $(i,j)$ in scenario $s$. We compute the biggest of the following quantities: $\{d_{ij}^s + d_i^s - d_j^s, d_{ij^{s_i^{*}}} + d_i^{\textrm{robust}} - d_j^{s_i^{*}}\}$, denoted $D_j^{\textrm{max}}$ which corresponds to scenario $s'$, and compare it to the current value of $d_j^{\textrm{robust}} - d_j^{s_j^{*}}$. If $D_j^{\textrm{max}}$ is smaller, the value $d_j^{\textrm{robust}}$ is replaced by $d_j^{s'} + D_j^{\textrm{max}}$ and the $P$ and $s$ values are updated correspondingly.
+		\end{description}
+		The complexity of this step is also $\mathcal{O}(s m)$.
+	\item[Step 2:] Finally the path that minimizes the maximum deviation is produced by starting at vertex $n$ and looking at predecessors $P$ until we reach vertex $1$. The cost of this path in any scenario (and indeed the deviation from the minimum cost to reach vertex $n$ in any scenario) is trivial to calculate. The complexity of this step is no more than $\mathcal{O}(s m)$.
+\end{description}
+\end{comment}
+
+\begin{thm}
+The above algorithm produces a path that minimizes the maximum deviation from the shortest path in any scenario.
+\end{thm}
+
+\begin{proof}
+We prove this result by contradiction. First some notation: let the path produced by our algorithm be $\mathcal{P}^{\textrm{alg}} = (1 = v_1,\dots,v_k = n)$. Let $\mathcal{P} = (1 = w_1,\dots, w_l = n)$ be any other path. We shall show that the maximum deviation for the path $\mathcal{P}$ is no better than the maximum deviation for the path $\mathcal{P^{\textrm{alg}}}$. Suppose this is not so. Let $s_{\mathcal{P}}$ denote the scenario that maximises the deviation from optimal for the path $\mathcal{P}$. Furthermore let $r$ denote the minimal index such that $w_r \neq v_r$, and let $s$ denote the minimal index such that $w_{l-s} \neq v_{k-s}$. Clearly, $r \geq 2$ and $s \geq 1$.
+
+We consider the path $\mathcal{P}^{\textrm{alg}}$ for the scenario $s_{\mathcal{P}}$. Our assumption that $\mathcal{P}$ has a smaller maximum deviation than $\mathcal{P^{\textrm{alg}}}$ implies that the cost of $\mathcal{P^{\textrm{alg}}}$ in the scenario $s_{\mathcal{P}}$ must be greater than the cost of $\mathcal{P}$. This implies that the subpath $(w_{r-1},\dots,w_{l-s+1})$ has a strictly lower cost than the subpath $(v_{r-1},\dots,v_{k-s+1})$ in the scenario $s_{\mathcal{P}}$ (these two subpaths share the start and end vertices). Without loss of generality\footnote{Requires a justification; not hard to write but TBD.}, we may assume that $v_f \neq w_g$ for all $r \le f \le k-s$ and $r \le g \le l-s$ -- so that the two subpaths do not share any vertices that aren't the start or the end. Consider the vertex $v_r$: the cost to reach it in the scenario $s_{\mathcal{P}}$
+\end{proof}
+
+
+\end{document}

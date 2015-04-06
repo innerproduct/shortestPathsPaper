@@ -1,0 +1,32 @@
+We are given a \underline{basic} feasible solution of the above LP, a corresponding `basis', and the dual values associated with this solution. We write the constraints above as $Ey = r$ where 
+
+\begin{equation*}
+y=\Big((x_i),(a_{jlt}),(c_{klt}),(f_{lt}),(m_{lt})\Big)%,(m_{lt}^{'}),(t_{lt})\Big)
+\end{equation*}
+
+and 
+
+\begin{equation*}
+E = \Big[[E^{x}_{i}],[E^{a}_{jlt}],[E^{c}_{klt}],[E^{f}_{lt}],[E^{m}_{lt}]\Big]%,[E^{'m}_{lt}],[E^{t}_{lt}]\Big].
+\end{equation*}
+
+Let $y$ be a basic feasible solution with the basis $\mathcal{B} = \mathcal{B}_x \cup \mathcal{B}_a \cup \mathcal{B}_c \cup \mathcal{B}_f \cup \mathcal{B}_m$. %\cup \mathcal{B}_{m'} \cup \mathcal{B}_t$.
+
+Then the basis matrix is:
+\begin{align*}
+E_{\mathcal{B}} = & \Big[E_{\alpha}\Big]_{\alpha \in \mathcal{B}}\\
+				= & \Big[[E^{x}_{i}]_{i \in \mathcal{B}_x},[E^{a}_{jlt}]_{{(j,l,t)} \in \mathcal{B}_a},[E^{c}_{klt}]_{{(k,l,t)} \in \mathcal{B}_c},[E^{f}_{lt}]_{{(l,t)} \in \mathcal{B}_f},[E^{m}_{lt}]_{{(l,t)} \in \mathcal{B}_m}\Big]%,[E^{'m}_{lt}]_{{(l,t)} \in \mathcal{B}_{m'}},[E^{t}_{lt}]_{(l,t) \in \mathcal{B}_t}\Big].
+\end{align*}
+
+And the reduced-cost for a non-basic column $E^x_i$ is 
+\begin{align*}
+& \left(\zeta_i + \sum_{lt} \Gamma^f_l F_{ilt}\right) ~-~ & \left[\left(\zeta_{i'} + \sum_{lt} \Gamma^f_l F_{i'lt}\right)_{i' \in \mathcal{B}_x}, 0, \dots, 0\right] E_{\mathcal{B}}^{-1} E^{x}_{i}\\
+= & \left(\zeta_i + \sum_{lt} \Gamma^f_l F_{ilt}\right) ~-~ & \pi \cdot E^{x}_{i}\\
+= & \left(\zeta_i + \sum_{lt} \Gamma^f_l F_{ilt}\right) ~-~ & \left(\sum_{j,l,t} (\phi_{ijlt} - \psi_{ijl(t-R'_j)})\pi^{A}_{jlt} + \sum_{k,l,t} (\eta_{iklt} - \gamma_{ikl(t-R_k)})\pi^{C}_{klt}\right.\\
+ & & \ \ + \left.\sum_{l,t} F_{ilt}\pi^{F}_{lt} + \textrm{gs}(i) \sum_{l,t} (\theta_{ilt} - \omega_{ilt})\pi^{M}_{lt}\right)\\%\\
+% & & \ \ + \sum \pi^{M,{\cal SB}}_{lt} + \sum_{h \in \hops(i)}\nu_{ih}\pi^{R}_{ih} + \sum \pi^{T}_{jlt}
+= & \left(\zeta_i + \sum_{lt} \Gamma^f_l F_{ilt}\right) ~-~ & \left(\sum_{j,l,t} \phi_{ijlt}\pi^{A}_{jlt} - \sum_{j,l,t}\psi_{ijlt}\pi^{A}_{jl(t+R'_j)} + \sum_{k,l,t} \eta_{iklt}\pi^{C}_{klt} - \sum_{k,l,t}\gamma_{iklt}\pi^{C}_{kl(t+R_k)}\right.\\
+ & & \ \ + \left.\sum_{l,t} F_{ilt}\pi^{F}_{lt} + \textrm{gs}(i) \sum_{l,t} (\theta_{ilt} - \omega_{ilt})\pi^{M}_{lt}\right)%\\
+\end{align*}
+
+%We denote this basic feasible solution by $\Big((x_i^{b}),(a_{jlt}^{b}),(c_{klt}^{b}),(f_{lt}^{b}),(m_{lt}^{b}),(m_{lt}^{'b}),(t_{lt}^{b})\Big)$. 

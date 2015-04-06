@@ -1,0 +1,26 @@
+The edge weights are determined as follows (note that the parameters $i,j,k$ are known):
+\begin{itemize}
+\item An edge that goes from an `arrival' node $({l_{0}}_A,t_0,d_0)$ to a `departure' node $({l_{0}}_D,t_1,d_1)$ carries a weight $\displaystyle \eta_{ijlt_1}\pi^{A}_{l_0t_1} - \psi_{ijlt_0}\pi^{A}_{l_0(t_0+R'_j)} + \eta_{iklt_1}\pi^{C}_{l_0t_1} - \gamma_{iklt_0}\pi^{C}_{l_0(t_0+R_k)} + F_{il_0t_1}\pi^{F}_{l_0t_1} + \textrm{gs}(i)\sum_{t_0 \le t \le t_1} \pi^{M}_{l_0t}$%\left(\theta_{il_0t_1}\pi^{M}_{l_0t_1} - \omega_{il_0t_0}\pi^{M}_{l_0t_0}\right) + F_{il_0t_1}\pi^{F}_{l_0t_1}$.%\sum_{t_0 \le t \le t_1} \textrm{gs}(i)\pi^{M}_{l_0t}$
+\item An edge that goes from a `departure' node $({l_0}_D,t_0,d_0)$ to an `arrival' node $({l_1}_D,t_1,d_1)$ carries a weight $\Gamma^{f}_{l_0}F_{il_0t_0}\pi^{F}_{l_0t_0}$.
+\item We don't yet know where to assign $\zeta_i$ as an edge-weight. 
+\end{itemize}
+%\[
+%\textrm{Edge weight} ~=~ \sum_{t \ge (t_1-t_c)}\pi^{\textrm{crew}}_{kl_1t}\eta_{ikl_1t_1} + \sum_{t \ge (t_1-t_a)}\pi^{\textrm{acft}}_{jl_1t}\phi_{ijl_1t_1} + \pi^{\textrm{MoG}}_{l_1t_1}\theta_{il_1t_1}\textrm{gs}_j 
+%- \sum_{t \ge (t_0+R_k)}\pi^{\textrm{crew}}_{kl_0t}\gamma_{ikl_0t_0} - \sum_{t \ge (t_0+R'_j)}\pi^{\textrm{acft}}_{jl_0t}\psi_{ijl_0t_0}
+%\]
+\newpage
+
+where:
+\begin{itemize}
+\item The edge goes from a node of the form $(l_0,t_0,d_0)$ to a node of the form $(l_1,t_1,d_1)$.
+\item $t_c$ is the time before take-off that a crew is ``picked up''.
+\item $t_a$ is the time before take-off that an aircraft is picked up.
+\item $R_k$ is the recuperation time (assumed to be fixed) for a crew that is dropped off.
+\item $R'_j$ is the recuperation time (assumed to be fixed) for an aircraft that is dropped off.
+\end{itemize}
+
+%\begin{enumerate}
+%\item Each `travel' edge carries a weight equal to the flying cost.
+%\item Each edge that begins and ends at the same location carries zero weight.\footnote{This can be changed, depending on modeling choices. For example, an edge corresponding to a crew swap may carry a weight equal to crew costs.}
+%\item Each node carries a weight obtained from the present values of the `duals' (e.g., an $(l,t)$ pair that is MoG constrained may carry a higher weight than one that has plenty of spare capacity).
+%\end{enumerate}

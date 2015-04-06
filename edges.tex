@@ -1,0 +1,20 @@
+There are several different classes of edges in this graph. We enumerate these classes below:
+
+\begin{enumerate}
+	\item One edge that goes from an arrival node $(l_A,t,d)$ to a departure node $(l_D,t+\Delta,\max\{d+\Delta,\mathcal{M}\})$.
+		\begin{itemize}
+			\item Depending on the nature of the stop, the aircraft needs to remain on ground for a minimum length of time; this determines the value of $\Delta$.
+		\end{itemize}
+	\item Edges that go from a departure node $(l_D,t,d)$ to an arrival node $(l'_A,t+TT,\max\{d+TT,\mathcal{M}\})$\footnote{For some departure nodes, e.g., those with `high' values of $d$, there will be no such edge since there aren't enough crew duty hours available to complete the next leg.}.
+		\begin{itemize}
+			\item These edges represent the travel between two locations. $TT$ is the travel time between the locations.
+			\item Special case: we allow for 'in-air delays' of up to $D_\textrm{max delay}$. In other words $TT$ can take the values $\{TT_{\textrm{min}},TT_{\textrm{min}}+1,\dots,TT_{\textrm{min}}+D_\textrm{max delay}\}$.
+		\end{itemize}
+	%\item Edges that go from a departure node to another departure node. These include:
+	%	\begin{itemize}
+	%		\item Ground delays: edges that go from $(l_D,t,d)$ to $(l_D,t+1,\max\{d+1,\mathcal{M}\})$.
+	%		\item Rest overnight: edges that go from $(l_D,t,d)$ to $(l_D,t+\mathcal{T}_{\textrm{RON}},0)$.
+	%		\item Crew swap: edges that go from $(l_D,t,d)$ to $(l_D,t+\mathcal{T}_{\textrm{CS}},0)$.
+	%		\item Special case: The only out-going edge from a node of the form $(l_D,t,\mathcal{M})$ is to the node $(l_D,t+\mathcal{T}_{\textrm{RON}},0)$
+	%	\end{itemize}
+\end{enumerate}
