@@ -3,9 +3,10 @@
 \usepackage{verbatim}
 \newtheorem{thm}{Theorem}
 \begin{document}
-%\long\def\/*#1*/{} %include multiline comments using \/* and */
+\long\def\/*#1*/{} %include multiline comments using \/* and */
 
 %algorithm for the robust deviation shortest path
+\paragraph{Algorithm (robust deviation shortest path)}
 
 Consider a (connected) directed acyclic graph $G$ with the vertex set $V = \{1, \dots, n\}$ and the edge set $E \subseteq V \times V$. We assume that the vertices are presented in a valid topological order. We also assume that there are a total of $m$ edges and $s$ scenarios (each scenario consists of a an assignment of weights or costs to edges). Our goal is to find a path from $1$ to $n$ that minimizes the maximum deviation in cost across all scenarios.\cite{some_refs}
 
