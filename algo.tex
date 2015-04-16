@@ -18,7 +18,7 @@ We now describe our algorithm:
 \item[Step 2] For every vertex $j \in \left\{2,\dots, n\right\}$ let $P_j$ be the list of its immediate predecessors (presented in a topological order). We select a \emph{robust predecessor} to $j$ as follows:
 	\begin{itemize}
 		\item For $i \in R_j$, compute $\nu^s_i = c^s_i + w^s_{ij} - l^s_j$ and $\nu^{\textrm{max}}_i = \textrm{max}_s\left\{\nu^s_i\right\}$.
-		\item Find $i_* = \textrm{argmax}_i\left\{\nu^{\textrm{max}_i}\right\}$.
+		\item Find $i_* = \textrm{argmin}_i\left\{\nu^{\textrm{max}}_i\right\}$.
 	\end{itemize}
 	Then $i_*$is the \emph{robust predecessor} of $j$.
 \item[Step 3] Compute the quantities $c^s_j = c^s_{i_*} + w^s_{i_*j}$, $\mu^s_j = c^s_j - l^s_j$, and $\lambda_j = \textrm{max}_s\left\{\mu^s_j\right\}$.
